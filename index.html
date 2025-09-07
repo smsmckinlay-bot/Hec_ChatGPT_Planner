@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hector’s Weekly Programme</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#1e3a8a">
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <h1>Hector’s Weekly Programme</h1>
+    <div>Track Academic, Exercise, Nutrition & Rules; view heatmaps; edit the plan; and manage meal ideas.</div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="week" class="tab active">Week</button>
+    <button data-tab="month" class="tab">Month Heatmap</button>
+    <button data-tab="year" class="tab">Year Heatmaps</button>
+    <button data-tab="edit" class="tab">Edit Plan</button>
+    <button data-tab="meals" class="tab">Meals</button>
+    <button data-tab="rules" class="tab">Rules</button>
+  </nav>
+
+  <section class="bar controlsbar">
+    <div class="controls">
+      <label>Month</label><input id="monthPicker" type="month" class="input">
+      <label>Day</label><input id="dayPicker" type="date" class="input">
+      <button id="goDay" class="btn">Go</button>
+      <button id="prevWeek" class="btn">← Prev</button>
+      <button id="nextWeek" class="btn">Next →</button>
+      <button id="todayBtn" class="btn">Today</button>
+      <button id="exportBtn" class="btn">Export</button>
+      <label class="btn file-btn">Import <input id="importFile" type="file" accept="application/json"></label>
+      <button id="installBtn" class="btn secondary" style="display:none">Install</button>
+    </div>
+    <p class="help">Heatmap reflects all four: A, E, N, and Rules (0–4). Tap a day to jump to that week.</p>
+  </section>
+
+  <section id="panel-week" class="bar panel">
+    <div id="rulesBanner" class="rules-banner hidden"></div>
+    <h2>Week</h2>
+    <div id="weekCards" class="cards"></div>
+  </section>
+
+  <section id="panel-month" class="bar panel hidden">
+    <h2>Monthly Heatmap (all 4)</h2>
+    <div id="heatmap" class="heat"></div>
+    <div class="legend">
+      <span>0/4</span><span class="box h0"></span>
+      <span>1/4</span><span class="box h1"></span>
+      <span>2/4</span><span class="box h2"></span>
+      <span>3/4</span><span class="box h3"></span>
+      <span>4/4</span><span class="box h4"></span>
+    </div>
+  </section>
+
+  <section id="panel-year" class="bar panel hidden">
+    <h2>Year Heatmaps (all 4)</h2>
+    <div class="year-controls">
+      <label>Year</label>
+      <input id="yearPicker" type="number" class="input small" min="2023" max="2100">
+      <button id="thisYearBtn" class="btn">This Year</button>
+    </div>
+    <div id="yearGrid" class="year-grid"></div>
+    <div class="legend">
+      <span>0/4</span><span class="box h0"></span>
+      <span>1/4</span><span class="box h1"></span>
+      <span>2/4</span><span class="box h2"></span>
+      <span>3/4</span><span class="box h3"></span>
+      <span>4/4</span><span class="box h4"></span>
+    </div>
+  </section>
+
+  <section id="panel-edit" class="bar panel hidden">
+    <h2>Edit Weekly Plan</h2>
+    <p class="help">Update the schedule below and click Save. (Changes affect future weeks; your ticked history stays.)</p>
+    <div id="editor"></div>
+    <div class="editor-actions">
+      <button id="savePlanBtn" class="btn">Save Plan</button>
+      <button id="resetPlanBtn" class="btn secondary">Reset to Defaults</button>
+    </div>
+  </section>
+
+  <section id="panel-meals" class="bar panel hidden">
+    <h2>Meal Ideas</h2>
+    <div id="mealList" class="meal-list"></div>
+    <div class="meal-add">
+      <input id="mealInput" class="input" placeholder="Add a new meal idea...">
+      <button id="addMealBtn" class="btn">Add</button>
+      <button id="exportMealsBtn" class="btn secondary">Export Meals</button>
+      <label class="btn file-btn">Import Meals <input id="importMealsFile" type="file" accept="application/json"></label>
+    </div>
+  </section>
+
+  <section id="panel-rules" class="bar panel hidden">
+    <h2>Daily Nutrition Rules</h2>
+    <p class="help">Rules contribute to the heatmap. Tick all rules on a day to light up the “Rules ✓”.</p>
+    <div class="rules-config">
+      <label><input id="showRulesBanner" type="checkbox"> Show rules banner on Week tab</label>
+    </div>
+    <div id="rulesList" class="rules-list"></div>
+    <div class="meal-add">
+      <input id="ruleInput" class="input" placeholder="Add a new rule...">
+      <button id="addRuleBtn" class="btn">Add Rule</button>
+      <button id="resetRulesBtn" class="btn secondary">Reset to defaults</button>
+    </div>
+  </section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
